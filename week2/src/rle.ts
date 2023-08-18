@@ -19,7 +19,7 @@ export class RLE {
     let decoded = "";
     let count = "";
 
-    for (let char of input) {
+    for (const char of input) {
       if (isNaN(Number(char))) {
         decoded += char.repeat(Number(count) || 1);
         count = "";
