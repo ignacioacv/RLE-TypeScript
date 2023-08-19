@@ -35,26 +35,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs/promises"));
 const flags_1 = require("./flags");
 const flags_2 = require("./flags");
+const flags_3 = require("./flags");
 const rle_1 = require("./rle");
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    if (!flags_1.path) {
+    if (!flags_2.path || !flags_3.flag) {
         console.log("Debe proporcionar un nombre de archivo.");
         process.exit(1);
     }
     try {
-        const data = yield fs.readFile(flags_1.path, "utf8");
+        const data = yield fs.readFile(flags_2.path, "utf8");
         let result;
-        if (flags_2.flag === "cf") {
+        if (flags_3.flag === "cf") {
             result = rle_1.RLE.encode(data);
         }
-        else if (flags_2.flag === "ucf") {
+        else if (flags_3.flag === "ucf") {
             result = rle_1.RLE.decode(data);
         }
         else {
             console.log("Bandera no reconocida.");
             process.exit(1);
         }
-        yield fs.writeFile("output.txt", result, "utf8");
+        yield fs.writeFile(flags_1.newPath, result, "utf8");
         console.log("Operación completada exitosamente.");
     }
     catch (err) {

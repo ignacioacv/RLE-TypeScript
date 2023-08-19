@@ -1,10 +1,11 @@
 import * as fs from "fs/promises";
+import { newPath } from "./flags";
 import { path } from "./flags";
 import { flag } from "./flags";
 import { RLE } from "./rle";
 
 (async () => {
-  if (!path) {
+  if (!path || !flag) {
     console.log("Debe proporcionar un nombre de archivo.");
     process.exit(1);
   }
@@ -23,7 +24,7 @@ import { RLE } from "./rle";
       process.exit(1);
     }
 
-    await fs.writeFile("output.txt", result, "utf8");
+    await fs.writeFile(newPath, result, "utf8");
     console.log("Operación completada exitosamente.");
   } catch (err) {
     console.error("Error:", err);
