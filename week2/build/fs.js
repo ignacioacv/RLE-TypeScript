@@ -55,15 +55,8 @@ const rle_1 = require("./rle");
             console.log("Bandera no reconocida.");
             process.exit(1);
         }
-        const outputFlagIndex = flags_1.args.indexOf("-o");
-        if (outputFlagIndex !== -1 && flags_1.args[outputFlagIndex + 1]) {
-            const newPath = flags_1.args[outputFlagIndex + 1];
-            yield fs.writeFile(newPath, result, "utf8");
-            console.log("Operación completada exitosamente.");
-        }
-        else {
-            console.log(result);
-        }
+        yield fs.writeFile(flags_1.newPath, result, "utf8");
+        console.log("Operación completada exitosamente.");
     }
     catch (err) {
         console.error("Error:", err);

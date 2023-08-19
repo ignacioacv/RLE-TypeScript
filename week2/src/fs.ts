@@ -1,5 +1,5 @@
 import * as fs from "fs/promises";
-import { args } from "./flags";
+import { newPath } from "./flags";
 import { path } from "./flags";
 import { flag } from "./flags";
 import { RLE } from "./rle";
@@ -24,14 +24,8 @@ import { RLE } from "./rle";
       process.exit(1);
     }
 
-    const outputFlagIndex = args.indexOf("-o");
-    if (outputFlagIndex !== -1 && args[outputFlagIndex + 1]) {
-      const newPath = args[outputFlagIndex + 1];
-      await fs.writeFile(newPath, result, "utf8");
-      console.log("Operación completada exitosamente.");
-    } else {
-      console.log(result);
-    }
+    await fs.writeFile(newPath, result, "utf8");
+    console.log("Operación completada exitosamente.");
   } catch (err) {
     console.error("Error:", err);
   }
